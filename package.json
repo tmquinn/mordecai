@@ -1,0 +1,14 @@
+{
+  "name": "mordecai",
+  "version": "1.0.0",
+  "description": "MasterMind by Mordecai Meirowitz",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Quinn Hoyer <quinn@themightyquinn.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
+}
