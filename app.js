@@ -7,8 +7,10 @@ app.get('/', function(req, res) {
 });
 
 app.get('/api/:gameId', function (req, res) {
+  let white = 0;
+  let black = 0;
 
-  res.send('Hello World!'); //{black: i, white: i}
+  res.send({white, black}); //{black: i, white: i}
 })
 
 app.listen(4200, function () {
