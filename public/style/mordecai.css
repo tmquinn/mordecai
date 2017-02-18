@@ -45,6 +45,10 @@
   margin: 5px;
 }
 
+.code-peg-hole.selected {
+  border-color: red;
+}
+
 .code-peg {
   width: 20px;
   height: 20px;
