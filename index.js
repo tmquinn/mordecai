@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/api/:gameId', function (req, res) {
@@ -14,6 +14,12 @@ app.get('/api/:gameId', function (req, res) {
 
   res.send(result);
 });
+
+app.get('/lib/jquery.js', function (req, res) {
+  res.sendFile(path.join(__dirname, 'node_modules', 'jquery', 'dist', 'jquery.js'));
+});
+
+app.use(express.static('public'));
 
 app.listen(4200, function () {
   console.log('Example app listening on port 4200!');

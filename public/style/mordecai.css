@@ -1,0 +1,14 @@
+.board {
+  width: 115px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hole {
+  width: 25px;
+  height: 25px;
+  border: 1px solid black;
+}

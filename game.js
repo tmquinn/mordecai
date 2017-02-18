@@ -3,10 +3,10 @@ const randomSeed = require('random-seed');
 function gameAnswer(seed) {
 
   const rand = randomSeed.create(seed);
-  const r1 = rand(4);
-  const r2 = rand(4);
-  const r3 = rand(4);
-  const r4 = rand(4);
+  const r1 = rand(6);
+  const r2 = rand(6);
+  const r3 = rand(6);
+  const r4 = rand(6);
 
   return ([r1, r2, r3, r4]);
 }
