@@ -1,5 +1,15 @@
-.tabletop {
+/* Utils */
+.flex {
   display: flex;
+}
+
+.flex--col {
+  display: flex;
+  flex-direction: column; 
+}
+
+/* Elements */
+.tabletop {
   margin: 5px;
 }
 
@@ -8,7 +18,6 @@
 }
 
 .row {
-  display: flex;
 }
 
 .submit-pane {
@@ -31,7 +40,6 @@
 /* Code Pegs */
 .code-pegs {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
 }
 

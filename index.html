@@ -10,10 +10,12 @@
 <body>
   <h1>Mordecai</h1>
   <button type="button" class="start-button">Start a new random game</button>
-  <div class="tabletop">
-    <div class="board"></div>
-    <div class="submit-pane"></div>
-    <div class="code-pegs">
+  <div class="tabletop flex">
+    <div class="board flex--col">
+      <div class="guess-current flex"></div>
+      <div class="guess-history flex"></div>
+    </div>
+    <div class="code-pegs flex--col">
       <div class="code-peg-hole">
         <div class="code-peg p-0"></div>
       </div>
