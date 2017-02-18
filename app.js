@@ -1,4 +1,5 @@
 const path = require('path');
+const game = require('./game');
 const express = require('express');
 const app = express();
 
@@ -7,11 +8,12 @@ app.get('/', function(req, res) {
 });
 
 app.get('/api/:gameId', function (req, res) {
-  let white = 0;
-  let black = 0;
+  let gameAnswer = game.gameAnswer(req.params.gameId);
+  let guess = req.query.guess.split(',').map(item => +item);
+  let result = game.diff(gameAnswer, guess);
 
-  res.send({white, black}); //{black: i, white: i}
-})
+  res.send(result);
+});
 
 app.listen(4200, function () {
   console.log('Example app listening on port 4200!');
