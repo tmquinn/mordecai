@@ -1,3 +1,5 @@
+/* global describe:false, it:false */
+
 const assert = require('assert');
 const game = require('../game');
 
