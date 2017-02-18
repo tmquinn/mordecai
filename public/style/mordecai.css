@@ -1,13 +1,31 @@
 .tabletop {
   display: flex;
+  margin: 5px;
 }
 
 .board {
-  margin-right: 15px;
+
 }
 
 .row {
   display: flex;
+}
+
+.submit-pane {
+  width: 26px;
+  height: 26px;
+  border: 1px solid black;
+  margin: 5px;
+  background-color: darkgreen;
+  margin-right: 20px;
+  visibility: hidden;
+}
+
+.key-peg-hole {
+  width: 26px;
+  height: 26px;
+  border: 1px solid black;
+  margin: 5px;
 }
 
 /* Code Pegs */
