@@ -11,8 +11,9 @@ function gameAnswer(seed) {
   return ([r1, r2, r3, r4]);
 }
 
-function diff(seed, guess) {
-  const answer = gameAnswer(seed);
+function diff(answer, guess) {
+  answer = answer.slice();
+  guess = guess.slice();
   let result = { black: 0, white: 0 };
 
   for (let i = 0; i < answer.length; ++i) {
@@ -36,6 +37,3 @@ function diff(seed, guess) {
 }
 
 module.exports = { gameAnswer, diff };
-console.log('answer', gameAnswer(1234));
-console.log('guess ', [0,1,2,3]);
-console.log(diff(1234, [0,1,2,3]));
