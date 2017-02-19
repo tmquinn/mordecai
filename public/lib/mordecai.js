@@ -4,8 +4,21 @@ const answerPegs = 4;
 const numColors = 6;
 let guessCurrent = [-1, -1, -1, -1];
 const guessHistory = [];
-let selectedHole = -1;
+let selectedHole = 0;
 let gameId = 0;
+
+function selectGuess(newHole) {
+  selectedHole = newHole;
+  $('.guess-current .row')
+    .children('div.code-peg-hole')
+    .each(function (index, hole) {
+      if (index === selectedHole) {
+        $(hole).addClass('selected');
+      } else {
+        $(hole).removeClass('selected');
+      }
+    });
+}
 
 function clearGuessColor(currentPeg) {
   $(currentPeg).removeClass(() => {
@@ -30,6 +43,9 @@ function setGuessHole(color) {
   if (guessCurrent.indexOf(-1) === -1) {
     $(`.guess-current .submit-pane`).css('visibility', 'visible');
   }
+
+  //advance to next hole
+  selectGuess(selectedHole >= answerPegs - 1 ? 0 : selectedHole + 1);
 }
 
 function resetGuessCurrent() {
@@ -39,11 +55,8 @@ function resetGuessCurrent() {
   });
   guessCurrentRow.children('.submit-pane').css('visibility', 'hidden');
 
-  guessCurrentRow.children('div.code-peg-hole').removeClass('selected');
-
+  selectGuess(0);
   guessCurrent = [-1, -1, -1, -1];
-  selectedHole = -1;
-
 }
 
 function submitGuess() {
@@ -58,15 +71,15 @@ function submitGuess() {
 function addGuessCurrentRow() {
   const row = $('<div class="row flex"></div>');
 
+  // Add code pegs
   for (let i = 0; i < answerPegs; i += 1) {
     let hole = $('<div class="code-peg-hole"><div class="code-peg"></div></div>');
 
     //Guess Current Click Handler
     hole.click({ hole: i }, function (evt) {
-      row.children().removeClass('selected');
-      row.children().eq([evt.data.hole]).addClass('selected');
-      selectedHole = evt.data.hole;
+      selectGuess(evt.data.hole);
     });
+
     row.append(hole);
   }
 
@@ -78,6 +91,7 @@ function addGuessCurrentRow() {
   row.append(submit);
 
   $('.guess-current').append(row);
+  selectGuess(0);
 }
 
 function addGuessHistoryRow(result) {
