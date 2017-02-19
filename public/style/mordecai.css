@@ -13,13 +13,6 @@
   margin: 5px;
 }
 
-.board {
-
-}
-
-.row {
-}
-
 .submit-pane {
   width: 26px;
   height: 26px;
@@ -31,10 +24,23 @@
 }
 
 .key-peg-hole {
-  width: 26px;
-  height: 26px;
+  width: 13px;
+  height: 13px;
+}
+
+.key-peg {
+  width: 10px;
+  height: 10px;
   border: 1px solid black;
-  margin: 5px;
+  border-radius: 5px;
+}
+
+.key-peg.white {
+  background-color: white;
+}
+
+.key-peg.black {
+  background-color: black;
 }
 
 /* Code Pegs */

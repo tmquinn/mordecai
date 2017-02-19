@@ -8,6 +8,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/api/:gameId', function (req, res) {
+  console.log(typeof req.query.guess, req.query.guess);
   let gameAnswer = game.gameAnswer(req.params.gameId);
   let result = game.diff(gameAnswer, req.query.guess.map(item => +item));
 
