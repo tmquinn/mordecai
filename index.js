@@ -9,8 +9,7 @@ app.get('/', function(req, res) {
 
 app.get('/api/:gameId', function (req, res) {
   let gameAnswer = game.gameAnswer(req.params.gameId);
-  let guess = req.query.guess.split(',').map(item => +item);
-  let result = game.diff(gameAnswer, guess);
+  let result = game.diff(gameAnswer, req.query.guess.map(item => +item));
 
   res.send(result);
 });

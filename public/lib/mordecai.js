@@ -2,8 +2,9 @@
 
 const answerPegs = 4;
 const numColors = 6;
-let currentGuess = new Array(4);
+let currentGuess = [-1, -1, -1, -1];
 let selectedHole = -1;
+let gameId = 0;
 
 function setGuessHole(color) {
   if (selectedHole !== -1) {
@@ -21,6 +22,18 @@ function setGuessHole(color) {
 
     currentPeg.addClass(`p-${color}`);
   }
+
+  if (currentGuess.indexOf(-1) === -1) {
+    $(`.guess-current .submit-pane`).css('visibility', 'visible');
+  }
+}
+
+function submitGuess() {
+  gameId = gameId || Math.round(Math.random() * (1E+10 - 1) + 1);
+
+  $.get(`api/${gameId}`, { guess: currentGuess}, function (result) {
+    console.log(result);
+  })
 }
 
 function addGuessCurrentRow() {
@@ -39,8 +52,8 @@ function addGuessCurrentRow() {
   }
 
   let submit = $('<div class="submit-pane"></div>').css('visibility', 'hidden');
-  submit.click(function (evt) {
-    //TODO: Process click
+  submit.click(function () {
+    submitGuess();
   });
 
   row.append(submit);
