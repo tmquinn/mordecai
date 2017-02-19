@@ -2,24 +2,27 @@
 
 const answerPegs = 4;
 const numColors = 6;
-const guessCurrent = [-1, -1, -1, -1];
+let guessCurrent = [-1, -1, -1, -1];
 const guessHistory = [];
 let selectedHole = -1;
 let gameId = 0;
+
+function clearGuessColor(currentPeg) {
+  $(currentPeg).removeClass(() => {
+    const classes = [];
+    for (let i = 0; i < numColors; i += 1) {
+      classes[i] = `p-${i}`;
+    }
+    return classes.join(' ');
+  });
+}
 
 function setGuessHole(color) {
   if (selectedHole !== -1) {
     guessCurrent[selectedHole] = color;
 
     const currentPeg = $(`.guess-current .row`).children().eq(selectedHole).children('.code-peg');
-
-    currentPeg.removeClass(() => {
-      const classes = [];
-      for (let i = 0; i < numColors; i += 1) {
-        classes[i] = `p-${i}`;
-      }
-      return classes.join(' ');
-    });
+    clearGuessColor(currentPeg);
 
     currentPeg.addClass(`p-${color}`);
   }
@@ -29,10 +32,27 @@ function setGuessHole(color) {
   }
 }
 
+function resetGuessCurrent() {
+  const guessCurrentRow = $('.guess-current .row');
+  guessCurrentRow.find('.code-peg').each(function (index, item) {
+    clearGuessColor(item);
+  });
+  guessCurrentRow.children('.submit-pane').css('visibility', 'hidden');
+
+  guessCurrentRow.children('div.code-peg-hole').removeClass('selected');
+
+  guessCurrent = [-1, -1, -1, -1];
+  selectedHole = -1;
+
+}
+
 function submitGuess() {
   gameId = gameId || Math.round(Math.random() * (1E+10 - 1) + 1);
 
-  $.get(`api/${gameId}`, { guess: guessCurrent }, addGuessHistoryRow);
+  $.get(`api/${gameId}`, { guess: guessCurrent }, function (result) {
+    addGuessHistoryRow(result);
+    resetGuessCurrent();
+  });
 }
 
 function addGuessCurrentRow() {
