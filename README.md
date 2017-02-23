@@ -12,3 +12,4 @@ node index.js
 * Limit gameplay to a fixed number of returns
 * Add endpoint to show answer
 * move global functions into an Object
+* Fix formatting of key pegs
