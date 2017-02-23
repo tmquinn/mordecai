@@ -11,4 +11,4 @@ node index.js
 ## TODOs
 * Limit gameplay to a fixed number of returns
 * Add endpoint to show answer
-* move global functinos into an Object
+* move global functions into an Object
